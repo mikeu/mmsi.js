@@ -1,14 +1,16 @@
 export class MMSI {
   private _id: string;
-  private _mid: string;
+
+  constructor (identity: number|string = "") {
+    this.identity = identity.toString();
+  }
   
   public get identity () : string {
     return this._id;
   }  
   public set identity (value : string) {
     value = value || "";
-    this._id = value.trim().padStart(9, "0");
-    this._mid = undefined;
+    this._id = value.trim().padStart(9, "0").substring(0, 9);
   }
 
   public get isValid () : boolean {
@@ -16,31 +18,28 @@ export class MMSI {
   }
 
   public get midCode () : string {
-    if (this._mid === undefined) {
-      this._mid = extractMid(this.identity);
-    }
-
-    return this._mid;
-  }
-
-  constructor (identity: number|string) {
-    this.identity = (identity ?? "").toString().padStart(9, '0');
+    return extractMid(this.identity);
   }
 }
 
+const reMID: string = "([2-7]\\d{2})";
+const midRegExes: RegExp[] = [
+  `0${reMID}\\d{5}`, // Group ship station, 0MIDxxxxx
+  `00${reMID}\\d{4}`, // Coast stations, 00MIDxxxx
+  `111${reMID}\\d{3}`, // SAR aircraft, 111MIDxxx
+  `${reMID}\\d{6}`, // Individual ships, MIDxxxxxx
+  `8${reMID}\\d{5}`, // Handheld VHF transceiver, 8MIDxxxxx
+  `98${reMID}\\d{4}`, // Craft associated with parent ship, 98MIDxxxx
+  `99${reMID}\\d{4}`, // Navigational aids, 99MIDxxxx
+].map(re => new RegExp(re));
+
 function extractMid (mmsi: string): string {
-  const category = Number(mmsi[0]);
-  let mid = undefined;
-  if (category === 1) {
-    mid = mmsi.substring(3, 6);
-  } else if (category >= 2 && category <= 7) {
-    mid = mmsi.substring(0, 3);
-  } else if (category === 9) {
-    const subcategory = Number(mmsi[1]);
-    if (subcategory === 8 || subcategory === 9) {
-      mid = mmsi.substring(2, 5);
+  for (const re of midRegExes) {
+    const matches = re.exec(mmsi);
+    if (matches) {
+      return matches[1];
     }
   }
 
-  return mid;
+  return undefined;
 }

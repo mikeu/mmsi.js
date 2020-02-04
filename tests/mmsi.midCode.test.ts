@@ -28,3 +28,13 @@ test("It extracts MID codes from navigational aid MMSIs", () => {
   expect(new MMSI(996649876).midCode).toBe("664");
   expect(new MMSI(996089876).midCode).toBe("608");
 });
+
+test("It returns undefined when MMSIs do not include MID codes", () => {
+  expect(new MMSI(970881234).midCode).toBeUndefined();
+  expect(new MMSI(972881234).midCode).toBeUndefined();
+  expect(new MMSI(974881234).midCode).toBeUndefined();
+  expect(new MMSI(12345678).midCode).toBeUndefined();
+  expect(new MMSI(123456789).midCode).toBeUndefined();
+  expect(new MMSI(990000000).midCode).toBeUndefined();
+  expect(new MMSI(111000000).midCode).toBeUndefined();
+})
