@@ -14,14 +14,15 @@ export class MMSI {
   }
 
   public get isValid () : boolean {
-    return this.identity.match(/^[0-9]{9}$/) !== null;
+    return validateMMSI(this.identity);
   }
 
-  public get midCode () : string {
-    return extractMid(this.identity);
+  public get MID () : string {
+    return extractMID(this.identity);
   }
 }
 
+// Valid MID codes are three digits, starting with a 2-7.
 const reMID: string = "([2-7]\\d{2})";
 const midRegExes: RegExp[] = [
   `0${reMID}\\d{5}`, // Group ship station, 0MIDxxxxx
@@ -33,7 +34,7 @@ const midRegExes: RegExp[] = [
   `99${reMID}\\d{4}`, // Navigational aids, 99MIDxxxx
 ].map(re => new RegExp(re));
 
-function extractMid (mmsi: string): string {
+function extractMID (mmsi: string): string {
   for (const re of midRegExes) {
     const matches = re.exec(mmsi);
     if (matches) {
@@ -42,4 +43,8 @@ function extractMid (mmsi: string): string {
   }
 
   return undefined;
+}
+
+function validateMMSI (mmsi: string): boolean {
+  return /^[0-9]{9}$/.exec(mmsi) !== null;
 }
