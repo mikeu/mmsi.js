@@ -1,4 +1,4 @@
-import { MMSI } from "../src/index";
+import { MMSI } from "@mmsi";
 
 test("It returns true for valid numeric MMSIs", () => {
   expect(new MMSI(316123456).isValid).toBe(true);

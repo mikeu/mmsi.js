@@ -1,4 +1,4 @@
-import { MMSI } from "../src/index";
+import { MMSI } from "@mmsi";
 
 test("It left-pads set values shorter than nine characters with 0", () => {
   const mmsi = new MMSI();

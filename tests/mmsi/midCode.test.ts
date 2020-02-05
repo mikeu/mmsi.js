@@ -1,4 +1,4 @@
-import { MMSI } from "../src/index";
+import { MMSI } from "@mmsi";
 
 test("It extracts MID codes from vessel MMSIs", () => {
   expect(new MMSI(231123456).midCode).toBe("231");
