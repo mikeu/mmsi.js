@@ -1,13 +1,15 @@
+import { countryFromMid, Country } from "@mmsi/data";
+
 export class MMSI {
   private _id: string;
 
   constructor (identity: number|string = "") {
     this.identity = identity.toString();
   }
-  
+
   public get identity () : string {
     return this._id;
-  }  
+  }
   public set identity (value : string) {
     value = value || "";
     this._id = value.trim().padStart(9, "0").substring(0, 9);
@@ -19,6 +21,10 @@ export class MMSI {
 
   public get MID () : string {
     return extractMID(this.identity);
+  }
+
+  public get Country () : Country {
+    return countryFromMid(this.MID);
   }
 }
 
@@ -32,8 +38,15 @@ const midRegExes: RegExp[] = [
   `8${reMID}\\d{5}`, // Handheld VHF transceiver, 8MIDxxxxx
   `98${reMID}\\d{4}`, // Craft associated with parent ship, 98MIDxxxx
   `99${reMID}\\d{4}`, // Navigational aids, 99MIDxxxx
-].map(re => new RegExp(re));
+].map(re => new RegExp(`^${re}$`));
 
+/**
+ * Attempt to find a valid MID code within the given MMSI string.
+ *
+ * Returns the MID code string if found, `undefined` otherwise.
+ *
+ * @param mmsi String from which to extract a MID code, if possible.
+ */
 function extractMID (mmsi: string): string {
   for (const re of midRegExes) {
     const matches = re.exec(mmsi);
@@ -45,6 +58,16 @@ function extractMID (mmsi: string): string {
   return undefined;
 }
 
+/**
+ * Attempt to determine whether the given string could be a valid MMSI.
+ *
+ * Returns `false` if the format of the string is definitely invalid,
+ * `true` otherwise. Note that no attempt is made to determine whether
+ * the value is an actually registered or assigned MMSI on a real-world
+ * vessel.
+ *
+ * @param mmsi String to validate as MMSI.
+ */
 function validateMMSI (mmsi: string): boolean {
   return /^[0-9]{9}$/.exec(mmsi) !== null;
 }
