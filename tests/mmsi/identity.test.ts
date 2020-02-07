@@ -15,7 +15,7 @@ test("It left-pads set values shorter than nine characters with 0", () => {
 
 test("It truncates longer set values down to the left-most nine characters", () => {
   const mmsi = new MMSI();
-  
+
   mmsi.identity = "1234567890";
   expect(mmsi.identity).toBe("123456789");
 
