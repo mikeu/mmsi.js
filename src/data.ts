@@ -1,27 +1,38 @@
+/**
+ * Details pertaining to a country or other territory.
+ */
 export interface Country {
   fullName: string;
   commonName: string;
   countryCode: string;
 }
 
+/**
+ * Get the country code corresponding to the given MID code, if it exists.
+ *
+ * @param mid Maritime Identification Digits (MID code)
+ */
 export function countryCodeFromMID (mid: string) : string {
   return midCountryCodes[mid];
 }
 
+/**
+ * Get the Country object corresponding to the given country code, if it exists.
+ *
+ * @param code ISO3166-based country code
+ */
 export function countryFromCountryCode (code: string) : Country {
   return countryCodes[code];
 }
 
+/**
+ * Get the country object corresponding to the given MID code, if it exists.
+ *
+ * @param mid Maritime Identification Digits (MID code)
+ */
 export function countryFromMid (mid: string): Country {
   return countryFromCountryCode(countryCodeFromMID(mid));
 }
-
-/*
-
-  QUESTIONS NEXT
-  - Is MMSICountry really the best name here? Should it just be Country or similar?
-
-*/
 
 const countryCodes: { [code: string]: Country } = {
   "AD": { commonName: "Andorra", fullName: "Andorra (Principality of)", countryCode: "AD" },
