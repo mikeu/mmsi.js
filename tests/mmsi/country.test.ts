@@ -22,7 +22,7 @@ test.each([
   [996649876, "Seychelles"],
   [996089876, "Ascension Island"],
 ])("It extracts country names from MMSIs with valid MIDs", (mmsi, commonName) => {
-  const country = new MMSI(mmsi).Country;
+  const country = new MMSI(mmsi).country;
   expect(country).toBeDefined();
   expect(country.commonName).toBe(commonName);
 });
@@ -36,5 +36,5 @@ test.each([
   [990000000],
   [111000000],
 ])("It returns undefined when MMSIs do not include country names", (mmsi) => {
-  expect(new MMSI(mmsi).Country).toBeUndefined();
+  expect(new MMSI(mmsi).country).toBeUndefined();
 })

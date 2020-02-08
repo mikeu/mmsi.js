@@ -23,7 +23,7 @@ export class MMSI {
     return extractMID(this.identity);
   }
 
-  public get Country () : Country {
+  public get country () : Country {
     return countryFromMid(this.MID);
   }
 }
