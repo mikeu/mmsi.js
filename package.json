@@ -1,19 +1,19 @@
 {
-  "name": "mmsi-utils",
+  "name": "mmsi.js",
   "version": "0.0.1",
   "description": "Maritime Mobile Service Identity (MMSI) parsing utilities",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "/dist"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikeu/mmsi-utils"
+    "url": "git://github.com/mikeu/mmsi.js.git"
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
+    "prepare": "npm test && npm run build",
     "test": "jest --coverage"
   },
   "keywords": [
@@ -27,6 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^25.1.1",
+    "codecov": "^3.6.5",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
