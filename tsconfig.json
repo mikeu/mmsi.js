@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "./dist",
-    "module": "CommonJS",
+    "removeComments": true,
+    "module": "AMD",
     "noImplicitAny": true,
     "lib": ["ES2017", "ES7", "ES6", "DOM"],
-    "outDir": "./dist",
+    "outFile": "./dist/mmsi.js",
     "target": "ES5",
     "moduleResolution": "Node",
     "baseUrl": "./",

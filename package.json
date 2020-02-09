@@ -1,6 +1,6 @@
 {
   "name": "mmsi.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Maritime Mobile Service Identity (MMSI) parsing utilities",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,7 +12,7 @@
     "url": "git://github.com/mikeu/mmsi.js.git"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && uglifyjs dist/mmsi.js --compress --output dist/mmsi.min.js",
     "prepare": "npm test && npm run build",
     "test": "jest --coverage"
   },
@@ -31,6 +31,7 @@
     "jest": "^25.1.0",
     "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uglify-js": "^3.7.7"
   }
 }
