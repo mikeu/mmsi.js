@@ -1,8 +1,8 @@
 {
   "name": "mmsi.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Maritime Mobile Service Identity (MMSI) parsing utilities",
-  "main": "./dist/index.js",
+  "main": "./dist/mmsi.js",
   "types": "./dist/index.d.ts",
   "files": [
     "/dist"
