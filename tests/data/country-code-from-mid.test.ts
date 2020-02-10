@@ -1,4 +1,4 @@
-import { countryCodeFromMID } from "@mmsi/data";
+import { codeFromMID } from "@mmsi/data";
 
 test.each([
   ["204", "PT-20"],
@@ -20,5 +20,5 @@ test.each([
   ["730", "CO"],
   ["760", "PE"],
 ])("It returns the correct country codes for given MID codes", (MID, cc) => {
-  expect(countryCodeFromMID(MID)).toBe(cc);
+  expect(codeFromMID(MID)).toBe(cc);
 });

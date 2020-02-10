@@ -1,4 +1,5 @@
-import { countryFromMid, Country } from "@mmsi/data";
+import { Jurisdiction } from "@mmsi/jurisdiction";
+import { jurisdictionFromMID } from "@mmsi/data";
 
 /**
  * Wrapper around a nine-digit MMSI that can extract details from it.
@@ -22,12 +23,12 @@ export class MMSI {
     return validateMMSI(this.identity);
   }
 
-  public get MID (): string {
+  public get midCode (): string {
     return extractMID(this.identity);
   }
 
-  public get country (): Country {
-    return countryFromMid(this.MID);
+  public get jurisdiciton (): Jurisdiction {
+    return jurisdictionFromMID(this.midCode);
   }
 }
 

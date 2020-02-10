@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Maritime Mobile Service Identity (MMSI) parsing utilities",
   "main": "./dist/mmsi.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/mmsi.d.ts",
   "files": [
     "/dist"
   ],

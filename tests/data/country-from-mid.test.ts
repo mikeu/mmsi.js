@@ -1,4 +1,4 @@
-import { countryFromMid } from "@mmsi/data";
+import { jurisdictionFromMID } from "@mmsi/data";
 
 test.each([
   ["204", "Azores"],
@@ -20,7 +20,7 @@ test.each([
   ["730", "Colombia"],
   ["760", "Peru"],
 ])("It returns the correct country codes for given MID codes", (MID, commonName) => {
-  const country = countryFromMid(MID);
+  const country = jurisdictionFromMID(MID);
   expect(country).toBeDefined();
-  expect(country.commonName).toBe(commonName);
+  expect(country.name).toBe(commonName);
 });

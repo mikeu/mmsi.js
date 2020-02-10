@@ -1,4 +1,4 @@
-import { countryFromCountryCode } from "@mmsi/data";
+import { jurisdictionFromCode } from "@mmsi/data";
 
 test.each([
   ["CA", "Canada"],
@@ -11,7 +11,7 @@ test.each([
   ["VG", "British Virgin Islands"],
   ["IT", "Italy"],
 ])("It returns the correct country for given codes", (cc, commonName) => {
-  const country = countryFromCountryCode(cc);
+  const country = jurisdictionFromCode(cc);
   expect(country).toBeDefined();
-  expect(country.commonName).toBe(commonName);
+  expect(country.name).toBe(commonName);
 });

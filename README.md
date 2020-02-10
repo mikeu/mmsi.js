@@ -22,6 +22,11 @@ from it, along with the corresponding country name and code.
 
 Note that this library makes no attempt to verify that a given MMSI is actually in active use, or registered to a real vessel.
 
+## Installation
+```bash
+npm install mmsi.js
+```
+
 ## Usage
 ```js
 import { MMSI } from 'mmsi.js';
@@ -31,8 +36,8 @@ console.log(mmsi.isValid); // false -- too many digits
 
 mmsi.identity = "410123456";
 console.log(mmsi.isValid); // true
-console.log(mmsi.MID); // "410"
-console.log(mmsi.country); // { commonName: "Bhutan", fullName: "Bhutan (Kingdom of)", countryCode: "BT" }
+console.log(mmsi.midCode); // "410"
+console.log(mmsi.jurisdiction); // { code: "BT", name: "Bhutan", fullName: "Bhutan (Kingdom of)" }
 ```
 
 ## License
