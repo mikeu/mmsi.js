@@ -2,11 +2,10 @@
   "compilerOptions": {
     "declaration": true,
     "removeComments": true,
-    "module": "AMD",
+    "module": "es6",
     "noImplicitAny": true,
-    "lib": ["ES2017", "ES7", "ES6", "DOM"],
-    "outFile": "./dist/mmsi.js",
-    "target": "ES5",
+    "lib": ["es2017", "es7", "es6", "DOM"],
+    "target": "es5",
     "moduleResolution": "Node",
     "baseUrl": "./",
     "paths": {
