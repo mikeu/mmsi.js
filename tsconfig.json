@@ -12,7 +12,8 @@
     "paths": {
       "@mmsi/*": ["./src/*"],
       "@mmsi": ["./src"]
-    }
+    },
+    "esModuleInterop": true
   },
   "include": [
     "src/index.ts"

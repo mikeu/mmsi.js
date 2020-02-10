@@ -1,35 +1,38 @@
 import { countryFromMid, Country } from "@mmsi/data";
 
+/**
+ * Wrapper around a nine-digit MMSI that can extract details from it.
+ */
 export class MMSI {
-  private _id: string;
+  private id: string;
 
   constructor (identity: number|string = "") {
     this.identity = identity.toString();
   }
 
-  public get identity () : string {
-    return this._id;
+  public get identity (): string {
+    return this.id;
   }
-  public set identity (value : string) {
+  public set identity (value: string) {
     value = value || "";
-    this._id = value.trim().padStart(9, "0").substring(0, 9);
+    this.id = value.trim().padStart(9, "0").substring(0, 9);
   }
 
-  public get isValid () : boolean {
+  public get isValid (): boolean {
     return validateMMSI(this.identity);
   }
 
-  public get MID () : string {
+  public get MID (): string {
     return extractMID(this.identity);
   }
 
-  public get country () : Country {
+  public get country (): Country {
     return countryFromMid(this.MID);
   }
 }
 
 // Valid MID codes are three digits, starting with a 2-7.
-const reMID: string = "([2-7]\\d{2})";
+const reMID = "([2-7]\\d{2})";
 const midRegExes: RegExp[] = [
   `0${reMID}\\d{5}`, // Group ship station, 0MIDxxxxx
   `00${reMID}\\d{4}`, // Coast stations, 00MIDxxxx
@@ -46,8 +49,9 @@ const midRegExes: RegExp[] = [
  * Returns the MID code string if found, `undefined` otherwise.
  *
  * @param mmsi String from which to extract a MID code, if possible.
+ * @returns Three-digit MID if a valid one is found.
  */
-function extractMID (mmsi: string): string {
+const extractMID = (mmsi: string): string => {
   for (const re of midRegExes) {
     const matches = re.exec(mmsi);
     if (matches) {
@@ -55,19 +59,18 @@ function extractMID (mmsi: string): string {
     }
   }
 
-  return undefined;
+  return;
 }
 
 /**
  * Attempt to determine whether the given string could be a valid MMSI.
  *
- * Returns `false` if the format of the string is definitely invalid,
- * `true` otherwise. Note that no attempt is made to determine whether
- * the value is an actually registered or assigned MMSI on a real-world
- * vessel.
+ * Note that no attempt is made to determine whether the value is actually
+ * registered or assigned as an MMSI on a real-world vessel.
  *
  * @param mmsi String to validate as MMSI.
+ * @returns True if input matches expected MMSI formatting, false otherwise.
  */
-function validateMMSI (mmsi: string): boolean {
+const validateMMSI = (mmsi: string): boolean => {
   return /^[0-9]{9}$/.exec(mmsi) !== null;
 }
