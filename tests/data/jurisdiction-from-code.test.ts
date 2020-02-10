@@ -10,8 +10,8 @@ test.each([
   ["UA", "Ukraine"],
   ["VG", "British Virgin Islands"],
   ["IT", "Italy"],
-])("It returns the correct country for given codes", (cc, commonName) => {
-  const country = jurisdictionFromCode(cc);
-  expect(country).toBeDefined();
-  expect(country.name).toBe(commonName);
+])("It returns the correct jurisdictions for given codes", (cc, commonName) => {
+  const j = jurisdictionFromCode(cc);
+  expect(j).toBeDefined();
+  expect(j.name).toBe(commonName);
 });

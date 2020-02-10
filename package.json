@@ -21,9 +21,7 @@
   "keywords": [
     "MMSI",
     "maritime mobile service identity",
-    "MID code",
-    "country code",
-    "flag"
+    "MID code"
   ],
   "author": "Michael Underwood",
   "license": "MIT",

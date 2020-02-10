@@ -19,6 +19,6 @@ test.each([
   ["710", "BR"],
   ["730", "CO"],
   ["760", "PE"],
-])("It returns the correct country codes for given MID codes", (MID, cc) => {
+])("It returns the correct jurisdiction codes for given MID codes", (MID, cc) => {
   expect(codeFromMID(MID)).toBe(cc);
 });

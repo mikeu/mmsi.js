@@ -6,7 +6,7 @@
 
 # mmsi.js
 A javascript library for parsing MMSI numbers (Maritime Mobile Service Identities) to validate format and extract
-information such as country of registration.
+information such as country or other jurisdiction of registration.
 
 ## About
 From [Wikipedia](https://en.wikipedia.org/wiki/Maritime_Mobile_Service_Identity):

@@ -19,8 +19,8 @@ test.each([
   ["710", "Brazil"],
   ["730", "Colombia"],
   ["760", "Peru"],
-])("It returns the correct country codes for given MID codes", (MID, commonName) => {
-  const country = jurisdictionFromMID(MID);
-  expect(country).toBeDefined();
-  expect(country.name).toBe(commonName);
+])("It returns the correct jurisdiction codes for given MID codes", (MID, commonName) => {
+  const j = jurisdictionFromMID(MID);
+  expect(j).toBeDefined();
+  expect(j.name).toBe(commonName);
 });

@@ -11,7 +11,7 @@ import { Jurisdiction } from "@mmsi/jurisdiction";
  * @returns Country code
  */
 export const codeFromMID = (mid: string): string => {
-  return midCountryCodes[mid];
+  return midCodes[mid];
 }
 
 /**
@@ -21,7 +21,7 @@ export const codeFromMID = (mid: string): string => {
  * @returns Jurisdiction for the code, or undefined.
  */
 export const jurisdictionFromCode = (code: string): Jurisdiction => {
-  return countryCodes[code];
+  return jurisdictions[code];
 }
 
 /**
@@ -34,7 +34,7 @@ export const jurisdictionFromMID = (mid: string): Jurisdiction => {
   return jurisdictionFromCode(codeFromMID(mid));
 }
 
-const countryCodes: { [code: string]: Jurisdiction } = {
+const jurisdictions: { [code: string]: Jurisdiction } = {
   "AD": new Jurisdiction("AD", "Andorra", "Andorra (Principality of)"),
   "AE": new Jurisdiction("AE", "United Arab Emirates", "United Arab Emirates"),
   "AF": new Jurisdiction("AF", "Afghanistan"),
@@ -276,7 +276,7 @@ const countryCodes: { [code: string]: Jurisdiction } = {
   "ZW": new Jurisdiction("ZW", "Zimbabwe", "Zimbabwe (Republic of)"),
 }
 
-const midCountryCodes: { [mid: string]: string } = {
+const midCodes: { [mid: string]: string } = {
   "201": "AL",
   "202": "AD",
   "203": "AT",
