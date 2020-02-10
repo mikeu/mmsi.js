@@ -31,16 +31,21 @@ npm install mmsi.js
 ```js
 import { MMSI } from 'mmsi.js';
 
-const mmsi = new MMSI("1234567890");
+const mmsi = new MMSI(1234567890);
 console.log(mmsi.isValid); // false -- too many digits
+mmsi.identity = "ABCDEFGHI";
+console.log(mmsi.isValid); // false -- not exclusively digits
 
 mmsi.identity = 123;
 console.log(mmsi.isValid); // true
-console.log(mmsi.identity); // "000000123"
+console.log(mmsi.formatted); // "000000123"
 
 mmsi.identity = "410123456";
 console.log(mmsi.midCode); // "410"
-console.log(mmsi.jurisdiction); // { code: "BT", name: "Bhutan", fullName: "Bhutan (Kingdom of)" }
+const jurisdiction = mmsi.jurisdiction;
+console.log(jurisdiction.code); // "BT"
+console.log(jurisdiction.name); // "Bhutan"
+console.log(jurisdiction.fullName); // "Bhutan (Kingdom of)"
 ```
 
 ## License
