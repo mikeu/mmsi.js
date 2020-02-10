@@ -34,8 +34,11 @@ import { MMSI } from 'mmsi.js';
 const mmsi = new MMSI("1234567890");
 console.log(mmsi.isValid); // false -- too many digits
 
-mmsi.identity = "410123456";
+mmsi.identity = 123;
 console.log(mmsi.isValid); // true
+console.log(mmsi.identity); // "000000123"
+
+mmsi.identity = "410123456";
 console.log(mmsi.midCode); // "410"
 console.log(mmsi.jurisdiction); // { code: "BT", name: "Bhutan", fullName: "Bhutan (Kingdom of)" }
 ```
