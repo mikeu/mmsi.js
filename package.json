@@ -14,7 +14,7 @@
     "url": "git://github.com/mikeu/mmsi.js.git"
   },
   "scripts": {
-    "build": "rm -rf dist/*.* && rollup -c",
+    "build": "rm -rf dist/*.* && rollup -c && dts-bundle-generator -o dist/mmsi-js.d.ts src/index.ts",
     "prepare": "npm test && npm run build",
     "test": "jest --coverage"
   },
@@ -37,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "codecov": "^3.6.5",
+    "dts-bundle-generator": "^3.3.1",
     "eslint": "^6.8.0",
     "eslint-plugin-jsdoc": "^21.0.0",
     "eslint-plugin-prefer-arrow": "^1.1.7",

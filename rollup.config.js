@@ -11,6 +11,6 @@ export default {
   ],
   plugins: [
     typescript(),
-    terser({ sourcemap: true }),
+    terser(),
   ],
 };
