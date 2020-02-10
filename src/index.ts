@@ -16,7 +16,7 @@ export class MMSI {
   }
   public set identity (value: string) {
     value = value || "";
-    this.id = value.trim().padStart(9, "0").substring(0, 9);
+    this.id = value.trim().padStart(9, "0");
   }
 
   public get isValid (): boolean {

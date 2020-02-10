@@ -20,7 +20,8 @@ test("It returns true for valid string MMSIs", () => {
 })
 
 test("It returns false for invalid MMSIs", () => {
-  expect( new MMSI(3.14159).isValid).toBe(false);
-  expect( new MMSI("MMSI").isValid).toBe(false);
-  expect( new MMSI("99.999999").isValid).toBe(false);
+  expect(new MMSI(3.14159).isValid).toBe(false);
+  expect(new MMSI("MMSI").isValid).toBe(false);
+  expect(new MMSI("99.999999").isValid).toBe(false);
+  expect(new MMSI("1234567890").isValid).toBe(false);
 });
