@@ -8,6 +8,7 @@ test.each([
   [536123456, "Northern Mariana Islands"],
   [664123456, "Seychelles"],
   [770123456, "Uruguay"],
+  [410123456, "Bhutan"],
   // SAR aircraft
   [111316123, "Canada"],
   [111512123, "New Zealand"],
@@ -22,7 +23,7 @@ test.each([
   [996649876, "Seychelles"],
   [996089876, "Ascension Island"],
 ])("It extracts country names from MMSIs with valid MIDs", (mmsi, commonName) => {
-  const j = new MMSI(mmsi).jurisdiciton;
+  const j = new MMSI(mmsi).jurisdiction;
   expect(j).toBeDefined();
   expect(j.name).toBe(commonName);
 });
@@ -36,5 +37,5 @@ test.each([
   [990000000],
   [111000000],
 ])("It returns undefined when MMSIs do not include country names", (mmsi) => {
-  expect(new MMSI(mmsi).jurisdiciton).toBeUndefined();
+  expect(new MMSI(mmsi).jurisdiction).toBeUndefined();
 })
