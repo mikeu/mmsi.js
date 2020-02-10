@@ -5,28 +5,57 @@ import { jurisdictionFromMID } from "@mmsi/data";
  * Wrapper around a nine-digit MMSI that can extract details from it.
  */
 export class MMSI {
-  private id: string;
 
+  /**
+   * Maritime Mobile Service Identity.
+   */
+  identity: number|string;
+
+  /**
+   * Create a new instance of the MMSI parser.
+   *
+   * @param identity Candidate MMSI to parse.
+   */
   constructor (identity: number|string = "") {
     this.identity = identity;
   }
 
-  public get identity (): number|string {
-    return this.id;
-  }
-  public set identity (value: number|string) {
-    value = (value || "").toString();
-    this.id = value.trim().padStart(9, "0");
+  /**
+   * Valid MMSIs are nine digits, but can also begin with zeros.
+   * Since these are not preserved when the identity is given as
+   * a number instead of a string, the `formatted` property can
+   * be used to display the identity appropriately zero-padded.
+   *
+   * @returns Identity, zero-padded to nine digits.
+   */
+  public get formatted (): string {
+    const id = this.identity ?? "";
+
+    return id.toString().trim().padStart(9, "0");
   }
 
+  /**
+   * Indicates whether the given identity can be validly represented as
+   * a string of exactly nine digits, 0-9.
+   *
+   * @returns True if the formatted MMSI appears valid, false otherwise.
+   */
   public get isValid (): boolean {
-    return validateMMSI(this.id);
+    return validateMMSI(this.formatted);
   }
 
+  /**
+   * @returns Three-digit MID code extracted from the given identity,
+   * or undefined if none was found.
+   */
   public get midCode (): string {
-    return extractMID(this.id);
+    return extractMID(this.formatted);
   }
 
+  /**
+   * @returns [[Jurisdiction]] identified in the MMSI, or undefined if
+   * none was found.
+   */
   public get jurisdiction (): Jurisdiction {
     return jurisdictionFromMID(this.midCode);
   }
