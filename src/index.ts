@@ -8,26 +8,26 @@ export class MMSI {
   private id: string;
 
   constructor (identity: number|string = "") {
-    this.identity = identity.toString();
+    this.identity = identity;
   }
 
-  public get identity (): string {
+  public get identity (): number|string {
     return this.id;
   }
-  public set identity (value: string) {
-    value = value || "";
+  public set identity (value: number|string) {
+    value = (value || "").toString();
     this.id = value.trim().padStart(9, "0");
   }
 
   public get isValid (): boolean {
-    return validateMMSI(this.identity);
+    return validateMMSI(this.id);
   }
 
   public get midCode (): string {
-    return extractMID(this.identity);
+    return extractMID(this.id);
   }
 
-  public get jurisdiciton (): Jurisdiction {
+  public get jurisdiction (): Jurisdiction {
     return jurisdictionFromMID(this.midCode);
   }
 }
