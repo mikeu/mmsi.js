@@ -12,7 +12,7 @@
     "url": "git://github.com/mikeu/mmsi.js.git"
   },
   "scripts": {
-    "build": "tsc && uglifyjs dist/mmsi.js --compress --output dist/mmsi.min.js",
+    "build": "rm -rf dist/*.* && tsc && uglifyjs dist/mmsi.js --compress --output dist/mmsi.min.js",
     "prepare": "npm test && npm run build",
     "test": "jest --coverage"
   },
